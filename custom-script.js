@@ -17,13 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new MutationObserver(disableVideoControls);
     observer.observe(document.body, { childList: true, subtree: true });
 });
-document.addEventListener("DOMContentLoaded", function () {
-    // Отключаем задержку перед отображением слайда
-    setTimeout(() => {
-        const stageArea = document.querySelector(".stageArea"); // или #stageArea
-        if (stageArea) {
-            stageArea.style.opacity = "1"; // Делаем слайды видимыми сразу
+ddocument.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("img, video").forEach(media => {
+        if (!media.complete) {
+            media.onload = () => console.log(`Загружено: ${media.src}`);
         }
-    }, 50); // Меняем 500 мс на 50 мс (можно на 0)
+    });
 });
+
 
