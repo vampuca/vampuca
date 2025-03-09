@@ -18,29 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(document.body, { childList: true, subtree: true });
 });
 document.addEventListener("DOMContentLoaded", function () {
-    // Убираем индикатор загрузки сразу после загрузки страницы
-    const waitingIndicator = document.getElementById("waitingIndicator");
-    if (waitingIndicator) {
-        waitingIndicator.style.display = "none";
-        waitingIndicator.style.visibility = "hidden";
-    }
-
-    // Также убираем задержку, если она была в main.js
+    // Отключаем задержку перед отображением слайда
     setTimeout(() => {
-        if (waitingIndicator) {
-            waitingIndicator.style.display = "none";
-            waitingIndicator.style.visibility = "hidden";
+        const stageArea = document.querySelector(".stageArea"); // или #stageArea
+        if (stageArea) {
+            stageArea.style.opacity = "1"; // Делаем слайды видимыми сразу
         }
-    }, 0); // Меняем 4000 на 500 мс
+    }, 50); // Меняем 500 мс на 50 мс (можно на 0)
 });
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("*").forEach(el => {
-        el.style.transitionDuration = "0s"; // Отключаем долгие переходы
-        el.style.animationDuration = "0s";  // Отключаем анимации
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    if (typeof hideWaitingIndicator === "function") {
-        hideWaitingIndicator();
-    }
-});
+
