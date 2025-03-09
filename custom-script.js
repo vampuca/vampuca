@@ -17,7 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new MutationObserver(disableVideoControls);
     observer.observe(document.body, { childList: true, subtree: true });
 });
-#waitingIndicator {
-    display: none !important;
-    visibility: hidden !important;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    // Убираем индикатор загрузки сразу после загрузки страницы
+    const waitingIndicator = document.getElementById("waitingIndicator");
+    if (waitingIndicator) {
+        waitingIndicator.style.display = "none";
+        waitingIndicator.style.visibility = "hidden";
+    }
+
+    // Также убираем задержку, если она была в main.js
+    setTimeout(() => {
+        if (waitingIndicator) {
+            waitingIndicator.style.display = "none";
+            waitingIndicator.style.visibility = "hidden";
+        }
+    }, 0); // Меняем 4000 на 500 мс
+});
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("*").forEach(el => {
+        el.style.transitionDuration = "0s"; // Отключаем долгие переходы
+        el.style.animationDuration = "0s";  // Отключаем анимации
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    if (typeof hideWaitingIndicator === "function") {
+        hideWaitingIndicator();
+    }
+});
