@@ -33,3 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 0); // Меняем 4000 на 500 мс
 });
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("*").forEach(el => {
+        el.style.transitionDuration = "0s"; // Отключаем долгие переходы
+        el.style.animationDuration = "0s";  // Отключаем анимации
+    });
+});
